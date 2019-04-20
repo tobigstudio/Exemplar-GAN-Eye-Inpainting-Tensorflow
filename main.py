@@ -5,7 +5,7 @@ from ExemplarGAN import ExemplarGAN
 #6_21_6, add the region of mask; add the two mask as the input of generator
 
 import os
-os.environ['CUDA_VISIBLE_DEVICES']= '12'
+os.environ['CUDA_VISIBLE_DEVICES']= '0'
 
 flags = tf.app.flags
 flags.DEFINE_integer("OPER_FLAG", 1, "flag of opertion, test or train")
