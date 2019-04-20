@@ -61,8 +61,8 @@ class ExemplarGAN(object):
         self.d_vars = [var for var in self.t_vars if 'discriminator' in var.name]
         self.g_vars = [var for var in self.t_vars if 'encode_decode' in var.name]
 
-        print "d_vars", len(self.d_vars)
-        print "e_vars", len(self.g_vars)
+        print("d_vars", len(self.d_vars))
+        print("e_vars", len(self.g_vars))
 
         self.saver = tf.train.Saver()
         for k, v in self.log_vars:
@@ -113,7 +113,7 @@ class ExemplarGAN(object):
                                self.exemplar_mask: self.get_Mask(test_eye_pos)})
                 output_concat = np.concatenate(
                     [batch_images_array, batch_exem_array, incomplete_img, x_tilde], axis=0)
-                print output_concat.shape
+                print(output_concat.shape)
                 save_images(output_concat, [output_concat.shape[0] / 4, 4],
                             '{}/{:02d}_output.jpg'.format(self.sample_path, j))
 
@@ -172,7 +172,7 @@ class ExemplarGAN(object):
                 if step % 50 == 0:
                     d_loss,  g_loss = sess.run([self.D_loss, self.G_loss],
                         feed_dict=f_d)
-                    print("step %d d_loss = %.4f, g_loss=%.4f" % (step, d_loss, g_loss))
+                    print(("step %d d_loss = %.4f, g_loss=%.4f" % (step, d_loss, g_loss)))
 
                 if np.mod(step, 400) == 0:
 
@@ -186,7 +186,7 @@ class ExemplarGAN(object):
                 step += 1
 
             save_path = self.saver.save(sess, self.model_path)
-            print "Model saved in file: %s" % save_path
+            print("Model saved in file: %s" % save_path)
 
     def discriminate(self, x_var, x_exemplar, local_x_var, spectural_normed=False, reuse=False):
 
